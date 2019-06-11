@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import {
-    Platform,
     StyleSheet,
     View,
     Text,
     Image,
     PanResponder,
+    Linking,
 } from 'react-native';
-import profileImage from '../assets/images/yelp.png';
 import console from 'console';
 
 export default class Card extends Component {
@@ -22,18 +21,25 @@ export default class Card extends Component {
     render() {
         return (
             <View
-                {...this.cardPanResponder.panHandlers}
+
                 style={styles.cardContainer}>
                 <Image
                     style={styles.cardImage}
-                    source={require('../assets/images/yelp.png')}
+                    source={require('../assets/images/sitti.png')}
                 />
                 <View style={styles.cardDetails}>
-                    <View style={styles.restaurantTitle}>
-                        <Text style={styles.profileInfo}>Restaurant</Text>
-                        <Text style={styles.profileInfo}>0.0 miles</Text>
+                    <View style={styles.restaurantDetails}>
+                        <Text style={styles.restaurantTitle}>Sitti</Text>
+                        <Text style={styles.restaurantDistance}>0.0 miles</Text>
                     </View>
-                    <Text style={styles.profileBio}>Bio</Text>
+                    <Text style={styles.restaurantCategory}>Middle Eastern</Text>
+                    <View style={styles.restaurantReviews}>
+                        <Image
+                            style={styles.restaurantRating}
+                            source={require('../assets/images/stars.png')}
+                        />
+                        <Text style={styles.reviewCount} onPress={() => Linking.openURL('https://www.yelp.com/biz/sitti-raleigh')}>707 Reviews</Text>
+                    </View>
                 </View>
             </View>
         );
@@ -46,11 +52,6 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         backgroundColor: 'white',
         margin: 10,
-        marginTop: 100,
-        marginBottom: 100,
-        borderWidth: 1,
-        borderColor: 'lightgrey',
-        borderRadius: 8,
     },
     cardImage: {
         flex: 1,
@@ -58,17 +59,37 @@ const styles = StyleSheet.create({
     },
     cardDetails: {
         margin: 10,
+        marginBottom: 0,
     },
-    restaurantTitle: {
+    restaurantDetails: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginBottom: 10,
     },
-    profileInfo: {
+    restaurantTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    restaurantDistance: {
         fontSize: 20,
     },
-    profileBio: {
+    restaurantCategory: {
         fontSize: 15,
         color: 'darkgrey',
+        marginBottom: 10,
+    },
+    restaurantReviews: {
+        flexDirection: 'row',
+        marginTop: 10,
+    },
+    restaurantRating: {
+        width: '35%',
+        height: '85%',
+        // marginTop: 5,
+        marginRight: 10,
+    },
+    reviewCount: {
+        fontSize: 15,
+        color: 'darkblue',
     }
 })
