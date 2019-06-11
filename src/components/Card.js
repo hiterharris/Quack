@@ -5,20 +5,34 @@ import {
     View,
     Text,
     Image,
+    PanResponder,
 } from 'react-native';
-
-const profileImage = 'https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/23172895_1438203092916138_4641129154353713970_n.png?_nc_cat=1&_nc_oc=AQmjxrC3dmLJWSej8bvlNjEuFhfdUhDacpHX2hNqufib-Sm-MFD38xHe1j3xN5dFqLDzDdyL5JySkzrj2Euw9KTW&_nc_ht=scontent-iad3-1.xx&oh=4252b960c66120475231b538f2c5f237&oe=5D7EC494';
+import profileImage from '../assets/images/yelp.png';
+import console from 'console';
 
 export default class Card extends Component {
+    componentWillMount() {
+        this.cardPanResponder = PanResponder.create({
+            onStartShouldSetPanResponder: () => true,
+            onPanResponderMove: (e, gesture) => console.log('Move'),
+            onPanResponderRelease: (e, gesture) => console.log('Released'),
+        });
+    }
+
     render() {
         return (
-            <View style={styles.cardContainer}>
+            <View
+                {...this.cardPanResponder.panHandlers}
+                style={styles.cardContainer}>
                 <Image
                     style={styles.cardImage}
-                    source={{ uri: profileImage }}
+                    source={require('../assets/images/yelp.png')}
                 />
                 <View style={styles.cardDetails}>
-                    <Text style={styles.profileInfo}>Name, Age</Text>
+                    <View style={styles.restaurantTitle}>
+                        <Text style={styles.profileInfo}>Restaurant</Text>
+                        <Text style={styles.profileInfo}>0.0 miles</Text>
+                    </View>
                     <Text style={styles.profileBio}>Bio</Text>
                 </View>
             </View>
@@ -40,9 +54,15 @@ const styles = StyleSheet.create({
     },
     cardImage: {
         flex: 1,
+        width: '100%',
     },
     cardDetails: {
-        margin: 20,
+        margin: 10,
+    },
+    restaurantTitle: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 10,
     },
     profileInfo: {
         fontSize: 20,
