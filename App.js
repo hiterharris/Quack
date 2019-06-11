@@ -1,41 +1,33 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  View,
+  Text,
+  Image,
+} from 'react-native';
+import Card from './src/components/Card';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const profileImage = 'https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/23172895_1438203092916138_4641129154353713970_n.png?_nc_cat=1&_nc_oc=AQmjxrC3dmLJWSej8bvlNjEuFhfdUhDacpHX2hNqufib-Sm-MFD38xHe1j3xN5dFqLDzDdyL5JySkzrj2Euw9KTW&_nc_ht=scontent-iad3-1.xx&oh=4252b960c66120475231b538f2c5f237&oe=5D7EC494';
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+      <View style={styles.appContainer}>
+        <Card />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  appContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
+    overflow: 'hidden',
+    backgroundColor: 'white',
     margin: 10,
+    borderWidth: 1,
+    borderColor: 'lightgrey',
+    borderRadius: 8,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+})
