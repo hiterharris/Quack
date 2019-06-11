@@ -9,7 +9,7 @@ Tinder-style React Native App using [Yelp Fusion API](https://github.com/infinit
 
 **Step 2:** cd to the cloned repo:
 
-**Step 3:** Install the Application with `yarn` or `npm i`
+**Step 3:** Install the Application with `yarn` or `npm install`
 
 ## Yelp API Keys/Secrets
 You will need to get your own [Yelp API Key](https://www.yelp.com/developers/documentation/v3).  Place it in your `env.json` before you start.
