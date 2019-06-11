@@ -5,14 +5,28 @@ import {
     View,
     Text,
     Image,
+    PanResponder,
 } from 'react-native';
+import console from 'console';
 
 const profileImage = 'https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/23172895_1438203092916138_4641129154353713970_n.png?_nc_cat=1&_nc_oc=AQmjxrC3dmLJWSej8bvlNjEuFhfdUhDacpHX2hNqufib-Sm-MFD38xHe1j3xN5dFqLDzDdyL5JySkzrj2Euw9KTW&_nc_ht=scontent-iad3-1.xx&oh=4252b960c66120475231b538f2c5f237&oe=5D7EC494';
 
 export default class Card extends Component {
+    componentWillMount() {
+        this.cardPanResponder = PanResponder.create({
+            onStartShouldSetPanResponder: () => true,
+            onPanResponderMove: (e, gesture) => console.log('Move'),
+            onPanResponderRelease: (e, gesture) => console.log('Released'),
+        });
+    }
+
     render() {
         return (
-            <View style={styles.cardContainer}>
+            <View
+                onStartShouldSetPanResponder={this.cardPanResponder.panHandlers.onStartShouldSetResponder}
+                onResponderMove={this.cardPanResponder.panHandlers.onResponderMove}
+                onResponderRelease={this.cardPanResponder.panHandlers.onResponderRelease}
+                style={styles.cardContainer}>
                 <Image
                     style={styles.cardImage}
                     source={{ uri: profileImage }}
