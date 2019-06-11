@@ -1,4 +1,7 @@
 #  Quack 
+
+![Quack Logo](src/assets/images/logo.png)
+
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://www.yelp.com/developers/documentation/v3)
 
 Tinder-style React Native App using [Yelp Fusion API](https://github.com/infinitered/ignite)
