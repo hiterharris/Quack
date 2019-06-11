@@ -21,7 +21,6 @@ export default class Card extends Component {
     render() {
         return (
             <View
-
                 style={styles.cardContainer}>
                 <Image
                     style={styles.cardImage}
@@ -92,4 +91,4 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: 'darkblue',
     }
-})
+});
