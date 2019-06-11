@@ -1,6 +1,6 @@
 #  Quack 
 
-![Quack Logo](src/assets/images/logo.png)
+![Quack Logo](src/assets/images/Logo.png)
 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://www.yelp.com/developers/documentation/v3)
 
