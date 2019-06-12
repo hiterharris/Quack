@@ -31,17 +31,13 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 40,
   },
   profileContainer: {
     flex: 1,
     overflow: 'hidden',
     backgroundColor: 'white',
     margin: 10,
-    borderWidth: 1,
-    borderColor: 'lightgrey',
-    borderRadius: 8,
-    marginTop: 10,
-    marginBottom: 120,
+    marginBottom: 150,
   }
 });
