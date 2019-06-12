@@ -6,22 +6,44 @@ import {
     Image,
     PanResponder,
     Linking,
+    Animated,
 } from 'react-native';
 import console from 'console';
 
 export default class Card extends Component {
     componentWillMount() {
+        this.pan = new Animated.ValueXY();
         this.cardPanResponder = PanResponder.create({
             onStartShouldSetPanResponder: () => true,
-            onPanResponderMove: (e, gesture) => console.log('Move'),
-            onPanResponderRelease: (e, gesture) => console.log('Released'),
-        });
+            onPanResponderMove: Animated.event([
+                null,
+                { dx: this.pan.x, dy: this.pan.y },
+            ]),
+            onPanResponderRelease: () => {
+                Animated.spring(this.pan, {
+                    toValue: { x: 0, y: 0 },
+                    friction: 4.5,
+                }).start();
+            },
+        })
     }
 
     render() {
+        const rotateCard = this.pan.x.interpolate({
+            inputRange: [-200, 0, 200],
+            outputRange: ['10deg', '0deg', '-10deg'],
+        });
+        const animatedStyle = {
+            transform: [
+                { translateX: this.pan.x },
+                { translateY: this.pan.y },
+                { rotate: rotateCard },
+            ],
+        }
         return (
-            <View
-                style={styles.cardContainer}>
+            <Animated.View
+                {...this.cardPanResponder.panHandlers}
+                style={[styles.cardContainer, animatedStyle]}>
                 <Image
                     style={styles.cardImage}
                     source={require('../assets/images/sitti.png')}
@@ -40,7 +62,7 @@ export default class Card extends Component {
                         <Text style={styles.reviewCount} onPress={() => Linking.openURL('https://www.yelp.com/biz/sitti-raleigh')}>707 Reviews</Text>
                     </View>
                 </View>
-            </View>
+            </Animated.View>
         );
     }
 }
